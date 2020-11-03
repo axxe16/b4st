@@ -1,0 +1,152 @@
+/* mixin */
+@mixin border-radius($radius) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+}
+
+@mixin transition($property, $duration, $easing: linear) {
+    transition: $property $duration $easing;
+    -webkit-transition: $property $duration $easing;
+    -moz-transition: $property $duration $easing;
+}
+
+@mixin gradient($color1, $color2) {
+    background-color: $color1;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#{$color1}, endColorstr=#{$color2});
+    background-image: -moz-linear-gradient(center top, $color1, $color2);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($color1), to($color2));
+}
+
+/* /mixin */
+
+
+/* variabili */
+
+/* colori */
+$primary-color: #063573;
+$primary-color-alpha-70: rgba(9, 50, 115, 0.7);
+$primary-color-alpha-90: rgba(9, 50, 115, 0.9);
+$light-gray:#f0f0f0;
+$light-gray-hover:#d0d0d0;
+$black: #000;
+
+/* /colori */
+
+/* dimensione testi */
+$very-big-text: 80px;
+$big-text: 50px;
+$medium-plus-text: 23px;
+$medium-text: 18px;
+$small-text: 14px;
+$very-small-text: 12px;
+$borderRadius:4px;
+
+/* /variabili */
+
+/* tools */
+.mt-first {
+    margin-top: 6.5rem !important;
+}
+
+.mt-first-inner {
+    margin-top: 10.5rem !important;
+}
+
+.pb-5 {
+    padding-bottom: 5rem
+}
+
+.pt-5 {
+    padding-top: 5rem
+}
+
+.pb-6 {
+    padding-bottom: 6rem
+}
+
+.pt-6 {
+    padding-top: 6rem
+}
+
+.pb-7 {
+    padding-bottom: 7rem
+}
+
+.pt-7 {
+    padding-top: 7rem
+}
+
+/* /tools */
+
+// A map of breakpoints.
+$breakpoints: (xs: 576px,
+    sm: 768px,
+    md: 992px,
+    lg: 1200px);
+
+// Respond above.
+@mixin respond-above($breakpoint) {
+
+    // If the breakpoint exists in the map.
+    @if map-has-key($breakpoints, $breakpoint) {
+
+        // Get the breakpoint value.
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        // Write the media query.
+        @media (min-width: $breakpoint-value) {
+            @content;
+        }
+
+        // If the breakpoint doesn't exist in the map.
+    }
+
+    @else {
+
+        // Log a warning.
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
+
+// Respond above.
+@mixin respond-under($breakpoint) {
+
+    // If the breakpoint exists in the map.
+    @if map-has-key($breakpoints, $breakpoint) {
+
+        // Get the breakpoint value.
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        // Write the media query.
+        @media (max-width: $breakpoint-value) {
+            @content;
+        }
+
+        // If the breakpoint doesn't exist in the map.
+    }
+
+    @else {
+
+        // Log a warning.
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
+
+
+//generale
+@include respond-under(lg) {
+   
+}
+
+@include respond-under(md) {
+  
+}
+
+@include respond-above(xs) {
+   
+}
+
+@include respond-under(sm) {
+
+}
