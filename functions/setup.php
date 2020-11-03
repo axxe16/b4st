@@ -55,18 +55,6 @@ if ( ! function_exists('b4st_setup') ) {
 			$content_width = 1100;
 		}
 
-		add_theme_support( 'post-formats', array(
-			'aside',
-			'gallery',
-			'link',
-			'image',
-			'quote',
-			'status',
-			'video',
-			'audio',
-			'chat'
-		) );
-
 		add_theme_support('automatic-feed-links');
 	}
 }
