@@ -321,7 +321,7 @@ function get_current_page_depth() {
 
 
 /**
- * GENERA PAGINA OPZIONIO GENERALE
+ * GENERA PAGINA OPZIONI GENERALE
 */
 
  //aggiunge una pagina option dentro la sezione impostazioni
@@ -331,4 +331,29 @@ if( function_exists('acf_add_options_page') ) {
 		'menu_title'	=> 'Impostazioni Tema',
 		'parent_slug'	=> 'options-general.php',
 	));
+}
+
+
+/**
+* rimuovo i pannelli in bacheca
+*/
+add_action( 'admin_init', 'remove_dashboard_meta' );
+function remove_dashboard_meta() {
+    remove_action('welcome_panel', 'wp_welcome_panel');
+    remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
+    remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
+    remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
+    remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' );
+    remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
+    remove_meta_box( 'dashboard_recent_drafts', 'dashboard', 'side' );
+    remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
+    remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
+    remove_meta_box( 'dashboard_activity', 'dashboard', 'normal');//since 3.8
+}
+
+
+//rimuovo menù commenti
+add_action( 'admin_menu', 'ek_remove_menus' );
+function ek_remove_menus(){
+	  remove_menu_page( 'edit-comments.php' );          //Comments
 }
