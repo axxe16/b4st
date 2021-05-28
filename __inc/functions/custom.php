@@ -320,18 +320,7 @@ function get_current_page_depth() {
 
 
 
-/**
- * GENERA PAGINA OPZIONI GENERALE
-*/
 
- //aggiunge una pagina option dentro la sezione impostazioni
-if( function_exists('acf_add_options_page') ) {
-	acf_add_options_sub_page(array(
-		'page_title' 	=> 'Impostazioni Tema',
-		'menu_title'	=> 'Impostazioni Tema',
-		'parent_slug'	=> 'options-general.php',
-	));
-}
 
 
 /**
@@ -357,3 +346,5 @@ add_action( 'admin_menu', 'ek_remove_menus' );
 function ek_remove_menus(){
 	  remove_menu_page( 'edit-comments.php' );          //Comments
 }
+
+
